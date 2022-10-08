@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PaymentContext.Domain.Repositories
 {
-    public interface ISudentRepository
+    public interface IStudentRepository
     {
         void Create(Student student);
         bool EmailExists(string email);
