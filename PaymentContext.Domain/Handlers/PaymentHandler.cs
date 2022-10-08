@@ -33,6 +33,18 @@ namespace PaymentContext.Domain.Handlers
                 return new CommandResult(false, $"{nameof(command)} error.");
             }
 
+            if (_studentRepository.EmailExists(command.StudentEmailAddress))
+            {
+                var key = nameof(Handle) + '.' + nameof(Handle) + '.' + nameof(command);
+                AddNotification(key, "Email already exists.");
+            }
+            
+            if (_studentRepository.DocumentExists(command.StudentDocumentNumber))
+            {
+                var key = nameof(Handle) + '.' + nameof(Handle) + '.' + nameof(command);
+                AddNotification(key, "Document already exists.");
+            }
+
             var address = new Address(command.Street, command.Number, command.Neighborhood, command.City, command.State, command.Country, command.ZipCode);
             var document = new Document(command.StudentDocumentNumber, command.StudentDocumentType);
             var email = new Email(command.StudentEmailAddress);
@@ -59,7 +71,13 @@ namespace PaymentContext.Domain.Handlers
 
             var student = new Student(name, document, email, address);
             student.AddSubscription(subscription);
-            
+
+            AddNotifications(address, document, email, name, payerAddress, payerDocument, payerEmail, payment, subscription, student);
+
+            if (IsValid)
+            {
+                return new CommandResult(false, $"{nameof(command)} error.");
+            }
 
             _studentRepository.Create(student);
 
@@ -75,6 +93,18 @@ namespace PaymentContext.Domain.Handlers
             if (!command.IsValid)
             {
                 return new CommandResult(false, $"{nameof(command)} error.");
+            }
+
+            if (_studentRepository.EmailExists(command.StudentEmailAddress))
+            {
+                var key = nameof(Handle) + '.' + nameof(Handle) + '.' + nameof(command);
+                AddNotification(key, "Email already exists.");
+            }
+
+            if (_studentRepository.DocumentExists(command.StudentDocumentNumber))
+            {
+                var key = nameof(Handle) + '.' + nameof(Handle) + '.' + nameof(command);
+                AddNotification(key, "Document already exists.");
             }
 
             var address = new Address(command.Street, command.Number, command.Neighborhood, command.City, command.State, command.Country, command.ZipCode);
@@ -105,6 +135,12 @@ namespace PaymentContext.Domain.Handlers
             var student = new Student(name, document, email, address);
             student.AddSubscription(subscription);
 
+            AddNotifications(address, document, email, name, payerAddress, payerDocument, payerEmail, payment, subscription, student);
+
+            if (IsValid)
+            {
+                return new CommandResult(false, $"{nameof(command)} error.");
+            }
 
             _studentRepository.Create(student);
 
@@ -120,6 +156,18 @@ namespace PaymentContext.Domain.Handlers
             if (!command.IsValid)
             {
                 return new CommandResult(false, $"{nameof(command)} error.");
+            }
+
+            if (_studentRepository.EmailExists(command.StudentEmailAddress))
+            {
+                var key = nameof(Handle) + '.' + nameof(Handle) + '.' + nameof(command);
+                AddNotification(key, "Email already exists.");
+            }
+
+            if (_studentRepository.DocumentExists(command.StudentDocumentNumber))
+            {
+                var key = nameof(Handle) + '.' + nameof(Handle) + '.' + nameof(command);
+                AddNotification(key, "Document already exists.");
             }
 
             var address = new Address(command.Street, command.Number, command.Neighborhood, command.City, command.State, command.Country, command.ZipCode);
@@ -151,6 +199,12 @@ namespace PaymentContext.Domain.Handlers
             var student = new Student(name, document, email, address);
             student.AddSubscription(subscription);
 
+            AddNotifications(address, document, email, name, payerAddress, payerDocument, payerEmail, payment, subscription, student);
+
+            if (IsValid)
+            {
+                return new CommandResult(false, $"{nameof(command)} error.");
+            }
 
             _studentRepository.Create(student);
 

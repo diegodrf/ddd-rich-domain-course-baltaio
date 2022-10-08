@@ -10,5 +10,7 @@ namespace PaymentContext.Domain.Repositories
     public interface ISudentRepository
     {
         void Create(Student student);
+        bool EmailExists(string email);
+        bool DocumentExists(string document);
     }
 }
