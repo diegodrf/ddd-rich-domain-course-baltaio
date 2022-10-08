@@ -15,10 +15,10 @@ namespace PaymentContext.Domain.Handlers
         IHandler<CommandCredtiCardPaymentSubscription>, 
         IHandler<CommandBoletoPaymentSubscription>
     {
-        private readonly ISudentRepository _studentRepository;
+        private readonly IStudentRepository _studentRepository;
         private readonly IEmailService _emailService;
 
-        public PaymentHandler(ISudentRepository studentRepository, IEmailService emailService)
+        public PaymentHandler(IStudentRepository studentRepository, IEmailService emailService)
         {
             _studentRepository = studentRepository;
             _emailService = emailService;
