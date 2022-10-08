@@ -6,7 +6,7 @@ namespace PaymentContext.Domain.Entities
     public class Student: Entity
     {
         private readonly ICollection<Subscription> _subscriptions;
-        public Student(Name name, Document document, Email email, Address? address)
+        public Student(Name name, Document document, Email email, Address? address = null)
         {
             Name = name;
             Document = document;
