@@ -6,11 +6,12 @@ namespace PaymentContext.Domain.Entities
     public class Student: Entity
     {
         private readonly ICollection<Subscription> _subscriptions;
-        public Student(Name name, Document document, Email email)
+        public Student(Name name, Document document, Email email, Address? address)
         {
             Name = name;
             Document = document;
             Email = email;
+            Address = address;
             _subscriptions = new List<Subscription>();
         }
 
@@ -30,7 +31,7 @@ namespace PaymentContext.Domain.Entities
         {
             foreach(var _ in _subscriptions.Where(s => s.Active == true))
             {
-                _.Activate();
+                _.Inactive();
             }
 
             _subscriptions.Add(subscription);

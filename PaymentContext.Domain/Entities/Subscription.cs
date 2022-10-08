@@ -1,9 +1,5 @@
-﻿using PaymentContext.Shared.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Flunt.Validations;
+using PaymentContext.Shared.Entities;
 
 namespace PaymentContext.Domain.Entities
 {
@@ -29,6 +25,11 @@ namespace PaymentContext.Domain.Entities
             {
                 return _payments.ToArray();
             }
+        }
+
+        public void AddPayment(Payment payment)
+        {
+            _payments.Add(payment);
         }
 
         public void Activate()
